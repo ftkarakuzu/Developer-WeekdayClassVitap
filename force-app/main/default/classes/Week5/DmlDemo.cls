@@ -48,7 +48,7 @@ public class DmlDemo {
     public static void dmlInsertDemo_4() {
         account acc = [select id, name from account where name = 'SoftInnovas Inc.' limit 1];
 
-        //creaet contact
+        //create contact
         contact cnt = new contact();
         cnt.LastName = 'Biden';
         cnt.AccountId = acc.id;
@@ -70,7 +70,7 @@ public class DmlDemo {
         system.debug('st is ' + stNew);
     }
 
-    public static void dmlInsertMultiple_wrong() {
+    /*public static void dmlInsertMultiple_wrong() {
         for (Integer i = 0; i < 225; i++) {
             Account acc = new account();
             //2. set values to fields
@@ -80,7 +80,8 @@ public class DmlDemo {
             insert acc; //booom
             system.debug('INSERTED ' + acc);
         }
-    }
+    } */
+    //inside loop do not use insert or update,bc you will be using many dmls out of 150 limit. we have 150 DMLs in one execution
 
     public static void dmlInsertMultiple_right() {
         List<account> listAcc = new list<account>();

@@ -4,6 +4,11 @@ trigger AccountTrigger on Account (before insert,before update, after insert, af
     if (Trigger.isBefore){
         AccountTriggerHandler.updateDescription(Trigger.new, Trigger.Old, Trigger.NewMap, Trigger.OldMap);
     }
+    if (Trigger.isAfter && Trigger.isUpdate) {
+        //HERE we call handler method to update all contacts VIP field
+        AccountTriggerHandler.updateVIPforContacts(Trigger.New, Trigger.Old, Trigger.NewMap, Trigger.OldMap);
+    }
+    }
     /*if(Trigger.isBefore) {
         for (account eachAcc : Trigger.new) {
             boolean updateDesc = false;
@@ -29,7 +34,7 @@ trigger AccountTrigger on Account (before insert,before update, after insert, af
             }
         }
     }*/
-}
+
 
 /*
     if (trigger.isAfter && trigger.isUpdate) {

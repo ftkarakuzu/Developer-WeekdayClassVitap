@@ -56,7 +56,7 @@ public class DmlDemo {
         system.debug('contact record: ' + cnt);
     }
 
-    public static void dmlInsertDemo_5() {
+    public static void dmlInsertDemo_55() {
         Salesforce_Project__c sp = [select id, name from Salesforce_Project__c order by CreatedDate desc limit 1];
 
         //we want to create related ticket

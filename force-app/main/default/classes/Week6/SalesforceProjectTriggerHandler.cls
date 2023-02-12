@@ -1,16 +1,24 @@
 public class SalesforceProjectTriggerHandler {
     public static void createDefaultTicket(List<salesforce_project__c> spTriggerNew) {
-        List<Salesforce_Ticket__c> listST = new List<Salesforce_Ticket__c>();
+        try{
+            List<Salesforce_Ticket__c> listST = new List<Salesforce_Ticket__c>();
 
         for (Salesforce_Project__c eachSP : spTriggerNew) {
             Salesforce_Ticket__c newST = new Salesforce_Ticket__c();
             newST.Subject__c = 'Default Ticket';
             newST.Salesforce_Project__c = eachSP.Id;
+            newST.Priority__c = 'Medium';
             listST.add(newST);
         }
         if (!listST.isEmpty()) {
             insert listST;
         }
+        }catch(exception ex){
+            For(Salesforce_Project__c sp : spTriggerNew) {
+                sp.addError('Error in creating Default Ticket. Please contact your dear administrator');
+            }
+        }
+        
     }
 
 public static void completeSPvalidation(List<salesforce_project__c> spTriggerNew, List<salesforce_project__c> spTriggerOld, 

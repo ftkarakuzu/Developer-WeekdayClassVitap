@@ -47,3 +47,4 @@ system.debug(jsonString);
 //Callouts Test
 RestCallouts.getAnimals();
 RestCallouts.getAirlines();
+RestCallouts.getEmployees();
